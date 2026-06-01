@@ -1,4 +1,6 @@
 {
+  "name": "react-pc-app2",
+  "version": "0.1.0",
   "private": true,
   "author": "Alice_Xu <xgb.xu@qq.com>",
   "scripts": {

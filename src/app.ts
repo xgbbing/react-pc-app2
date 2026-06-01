@@ -6,8 +6,24 @@ export async function getInitialState(): Promise<{ name: string }> {
   return { name: '@umijs/max' };
 }
 
+export const qiankun = {
+  // 应用加载之前
+  async bootstrap(props: any) {
+    console.log('[App1] bootstrap', props);
+  },
+  // 应用 render 之前触发
+  async mount(props: any) {
+    console.log('[App1] mount', props);
+  },
+  // 应用卸载之后触发
+  async unmount(props: any) {
+    console.log('[App1] unmount', props);
+  },
+};
+
 export const layout = () => {
   return {
+    pure: true,
     logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
     menu: {
       locale: false,

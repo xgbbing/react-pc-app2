@@ -1,13 +1,19 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
-  antd: {},
+  antd: {
+    theme: {
+      token: {
+        colorPrimary: '#ff4d00',
+      },
+    },
+  },
   access: {},
   model: {},
   initialState: {},
   request: {},
   layout: {
-    title: '@umijs/max',
+    title: 'React PC App2',
   },
   routes: [
     {
@@ -31,5 +37,9 @@ export default defineConfig({
     },
   ],
   npmClient: 'pnpm',
-  utoopack: {},
+  // utoopack: {},
+  mfsu: false,
+  qiankun: {
+    slave: {},
+  },
 });
