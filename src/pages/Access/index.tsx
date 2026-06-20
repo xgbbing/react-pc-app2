@@ -14,7 +14,7 @@ const AccessPage: React.FC = () => {
       <Access accessible={access.canSeeAdmin}>
         <Button>只有 Admin 可以看到这个按钮</Button>
       </Access>
-      <Button style={{ marginTop: 16 }} onClick={() => history.push('/home')}>
+      <Button style={{ marginTop: 16 }} onClick={() => history.push('/')}>
         返回首页
       </Button>
     </PageContainer>
