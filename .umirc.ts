@@ -15,14 +15,15 @@ export default defineConfig({
   layout: {
     title: 'React PC App2',
   },
+  base: '/app2',
+  publicPath: '/app2/',
+  history: {
+    type: 'browser',
+  },
   routes: [
     {
-      path: '/',
-      redirect: '/home',
-    },
-    {
       name: '首页',
-      path: '/home',
+      path: '/',
       component: './Home',
     },
     {
@@ -38,7 +39,7 @@ export default defineConfig({
   ],
   npmClient: 'pnpm',
   // utoopack: {},
-  mfsu: false,
+  // mfsu: false,
   qiankun: {
     slave: {},
   },
