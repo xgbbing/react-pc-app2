@@ -175,7 +175,7 @@ const TableList: React.FC<unknown> = () => {
             success,
           };
         }}
-        columns={columns}
+        columns={columns as any}
         rowSelection={{
           onChange: (_, selectedRows) => setSelectedRows(selectedRows),
         }}
@@ -260,7 +260,7 @@ const TableList: React.FC<unknown> = () => {
             params={{
               id: row?.name,
             }}
-            columns={columns}
+            columns={columns as any}
           />
         )}
       </Drawer>
