@@ -15,8 +15,8 @@ export default defineConfig({
   layout: {
     title: 'React PC App2',
   },
-  base: '/app2',
-  publicPath: '/app2/',
+  base: '/webapp/react-pc-app2/',
+  publicPath: '/webapp/react-pc-app2/',
   history: {
     type: 'browser',
   },
