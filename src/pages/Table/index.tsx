@@ -7,7 +7,7 @@ import {
   ProDescriptionsItemProps,
   ProTable,
 } from '@ant-design/pro-components';
-import { Button, Divider, Drawer, message } from 'antd';
+import { App, Button, Divider, Drawer } from 'antd';
 import React, { useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
@@ -19,7 +19,7 @@ const { addUser, queryUserList, deleteUser, modifyUser } =
  * 添加节点
  * @param fields
  */
-const handleAdd = async (fields: API.UserInfo) => {
+const handleAdd = async (fields: API.UserInfo, message: any) => {
   const hide = message.loading('正在添加');
   try {
     await addUser({ ...fields });
@@ -37,7 +37,7 @@ const handleAdd = async (fields: API.UserInfo) => {
  * 更新节点
  * @param fields
  */
-const handleUpdate = async (fields: FormValueType) => {
+const handleUpdate = async (fields: FormValueType, message: any) => {
   const hide = message.loading('正在配置');
   try {
     await modifyUser(
@@ -65,7 +65,7 @@ const handleUpdate = async (fields: FormValueType) => {
  *  删除节点
  * @param selectedRows
  */
-const handleRemove = async (selectedRows: API.UserInfo[]) => {
+const handleRemove = async (selectedRows: API.UserInfo[], message: any) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
@@ -90,6 +90,7 @@ const TableList: React.FC<unknown> = () => {
   const actionRef = useRef<ActionType>();
   const [row, setRow] = useState<API.UserInfo>();
   const [selectedRowsState, setSelectedRows] = useState<API.UserInfo[]>([]);
+  const { message } = App.useApp();
   const columns: ProDescriptionsItemProps<API.UserInfo>[] = [
     {
       title: '名称',
@@ -191,7 +192,7 @@ const TableList: React.FC<unknown> = () => {
         >
           <Button
             onClick={async () => {
-              await handleRemove(selectedRowsState);
+              await handleRemove(selectedRowsState, message);
               setSelectedRows([]);
               actionRef.current?.reloadAndRest?.();
             }}
@@ -207,7 +208,7 @@ const TableList: React.FC<unknown> = () => {
       >
         <ProTable<API.UserInfo, API.UserInfo>
           onSubmit={async (value) => {
-            const success = await handleAdd(value);
+            const success = await handleAdd(value, message);
             if (success) {
               handleModalVisible(false);
               if (actionRef.current) {
@@ -217,13 +218,13 @@ const TableList: React.FC<unknown> = () => {
           }}
           rowKey="id"
           type="form"
-          columns={columns}
+          columns={columns as any}
         />
       </CreateForm>
       {stepFormValues && Object.keys(stepFormValues).length ? (
         <UpdateForm
           onSubmit={async (value) => {
-            const success = await handleUpdate(value);
+            const success = await handleUpdate(value, message);
             if (success) {
               handleUpdateModalVisible(false);
               setStepFormValues({});

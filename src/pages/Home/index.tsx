@@ -2,7 +2,7 @@ import Guide from '@/components/Guide';
 import { trim } from '@/utils/format';
 import { PageContainer } from '@ant-design/pro-components';
 import { history, useModel } from '@umijs/max';
-import { Button, Select, Space } from 'antd';
+import { App, Button, Select, Space } from 'antd';
 import styles from './index.less';
 
 const CITY_OPTIONS = [
@@ -27,6 +27,7 @@ const CITY_OPTIONS = [
 const HomePage: React.FC = () => {
   const { name } = useModel('global');
   const masterProps = useModel('@@qiankunStateFromMaster');
+  const { message } = App.useApp();
 
   return (
     <PageContainer ghost>
@@ -42,11 +43,13 @@ const HomePage: React.FC = () => {
               onChange={(value) => {
                 masterProps?.setCity?.(value);
               }}
+              getPopupContainer={(node) => node.parentNode as HTMLElement}
             />
           </div>
           <Button type="primary" onClick={() => history.push('/access')}>
             跳转权限演示页面
           </Button>
+          <Button onClick={() => message.info('1111')}>提示</Button>
         </Space>
       </div>
     </PageContainer>
