@@ -1,0 +1,14 @@
+name: Deploy react-pc-app2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    uses: xgbbing/common-workflows/.github/workflows/common-deploy.yml@main
+    with:
+      app: react-pc-app2
+    secrets: inherit
