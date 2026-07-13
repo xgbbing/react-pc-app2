@@ -17,6 +17,7 @@ export function rootContainer(container: React.ReactNode) {
   const containerId = `root-${appId}`;
   return (
     <ConfigProvider
+      warning={{ strict: false }}
       getPopupContainer={(triggerNode?: HTMLElement) => {
         // 如果在 qiankun 环境下，强制挂载到子应用根节点
         if (isQiankun) {
